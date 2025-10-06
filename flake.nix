@@ -31,7 +31,6 @@
     in
     {
       lib = {
-        inherit mkPkgs;
         hmModules = hmModules;
         pickHm = pick;
       };
