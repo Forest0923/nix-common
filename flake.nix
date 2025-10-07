@@ -17,15 +17,15 @@
     }:
     let
       hmModules = rec {
-        bash = ./modules/bash;
-        bat = ./modules/bat;
-        eza = ./modules/eza;
-        fzf = ./modules/fzf;
-        git = ./modules/git;
-        neovim = ./modules/neovim;
-        tmux = ./modules/tmux;
+        bash    = ./modules/bash;
+        bat     = ./modules/bat;
+        eza     = ./modules/eza;
+        fzf     = ./modules/fzf;
+        git     = ./modules/git;
+        neovim  = ./modules/neovim;
+        tmux    = ./modules/tmux;
         wezterm = ./modules/wezterm;
-        zsh = ./modules/zsh;
+        zsh     = ./modules/zsh;
       };
       pick = names: map (name: hmModules.${name}) names;
     in
