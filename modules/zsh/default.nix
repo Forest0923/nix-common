@@ -16,10 +16,7 @@
       # grml
       source ${pkgs.grml-zsh-config}/etc/zsh/zshrc
 
-      # fzf
-      if [[ $options[zle] = on ]]; then
-        source <(${pkgs.fzf}/bin/fzf --zsh)
-      fi
+      ${builtins.readFile ./post_grml.sh}
 
       ${builtins.readFile ./prompt.sh}
     '';
