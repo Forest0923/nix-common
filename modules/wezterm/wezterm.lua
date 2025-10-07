@@ -1,6 +1,6 @@
 local wezterm = require('wezterm')
 
-return {
+local config = {
 	font		= wezterm.font('Fira Code'),
 	font_size	= 13,
 
@@ -21,7 +21,6 @@ return {
 	},
 	window_background_opacity	= 0.68,
 	text_background_opacity		= 1.0,
-	window_decorations		= "NONE",
 
 	enable_tab_bar			= true,
 	hide_tab_bar_if_only_one_tab	= true,
@@ -37,3 +36,13 @@ return {
 	},
 	warn_about_missing_glyphs = false,
 }
+
+if wezterm.target_triple == "x86_64-unknown-linux-gnu" then
+	-- for Linux
+	config.window_decorations	= "NONE"
+elseif wezterm.target_triple == "aarch64-apple-darwin" then
+	-- for macOS
+	config.window_decorations	= "TITLE | RESIZE"
+end
+
+return config
