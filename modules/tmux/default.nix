@@ -36,6 +36,11 @@
       set -g @continuum-restore 'on'
       set -g @continuum-save-interval '15'
 
+      set -g default-shell "$SHELL"
+      set -g default-command "$SHELL"
+
+      set -g allow-passthrough on
+
       # Restore sessions
       run-shell "${pkgs.tmuxPlugins.resurrect}/share/tmux-plugins/resurrect/scripts/restore.sh"
     '';

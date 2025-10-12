@@ -1,9 +1,9 @@
-{ config, nixosConfig, ... }:
+{ config, lib, ... }:
 {
   programs.git = {
     enable = true;
-    userName = "Masahiro Mori";
-    userEmail = "masahirom0923@gmail.com";
+    userName = lib.mkDefault "Your Name";
+    userEmail = lib.mkDefault "user@example.com";
     aliases = {
       graph = "log --graph --all --decorate";
       wt = "worktree";

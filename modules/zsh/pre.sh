@@ -1,4 +1,4 @@
-# --- .zshrc.pre ---
+# .zshrc.pre
 if [[ -z $TMUX ]] && [[ -z $ZELLIJ ]]; then
 	if [[ $TERM_PROGRAM == vscode ]] || \
 	   [[ $TERM_PROGRAM == WarpTerminal ]] || \
