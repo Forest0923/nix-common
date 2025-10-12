@@ -10,21 +10,47 @@
   ];
   programs.zsh = {
     enable = true;
-    initContent = ''
-      ${builtins.readFile ./pre.sh}
-
-      # grml
-      source ${pkgs.grml-zsh-config}/etc/zsh/zshrc
-
-      # fzf
-      if [[ $options[zle] = on ]]; then
-        source <(${pkgs.fzf}/bin/fzf --zsh)
+    enableCompletion = false;
+    profileExtra = ''
+      # Homebrew
+      if test /opt/homebrew/bin/brew &> /dev/null; then
+        eval "$(/opt/homebrew/bin/brew shellenv)"
+        fpath=(/opt/homebrew/share/zsh/site-functions $fpath)
       fi
-
-      ${builtins.readFile ./post_grml.sh}
-
-      ${builtins.readFile ./prompt.sh}
     '';
+    # https://mynixos.com/home-manager/option/programs.zsh.initContent
+    initContent = lib.mkMerge [
+      (lib.mkOrder 500 ''
+        ########################
+        # --- lib.mkBefore --- #
+        ########################
+        ${builtins.readFile ./pre.sh}
+        #zmodload zsh/zprof
+      '')
+      (lib.mkOrder 850 ''
+        ###########################
+        # --- GRML Zsh Config --- #
+        ###########################
+
+        # Load before fzf's zsh integration
+        # https://github.com/nix-community/home-manager/blob/d305eece827a3fe317a2d70138f53feccaf890a1/modules/programs/fzf.nix
+        source ${pkgs.grml-zsh-config}/etc/zsh/zshrc
+      '')
+      (lib.mkOrder 1000 ''
+        ###################
+        # --- Default --- #
+        ###################
+        ${builtins.readFile ./functions.sh}
+
+        ${builtins.readFile ./prompt.sh}
+      '')
+      (lib.mkOrder 1500 ''
+        #######################
+        # --- lib.mkAfter --- #
+        #######################
+        #zprof
+      '')
+    ];
     shellAliases = {
       # ls
       ls = "command eza";
