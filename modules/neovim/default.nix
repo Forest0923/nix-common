@@ -10,7 +10,6 @@
       vimPlugins.mkdir-nvim
       vimPlugins.numb-nvim
       vimPlugins.nvim_context_vt
-      vimPlugins.render-markdown-nvim
       vimPlugins.transparent-nvim
       vimPlugins.vim-lsp
       vimPlugins.vim-lsp-settings
