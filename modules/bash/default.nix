@@ -44,6 +44,7 @@
 
       # cat
       cat = "bat";
+      cats = "bat --style=header --decoration=always";
 
       # ghq
       cdghq = "cd $(ghq root); cd $(ghq list | fzf --reverse --height 40%)";
