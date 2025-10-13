@@ -93,7 +93,7 @@
 
       # cat
       cat = "bat";
-      cats = "bat --style=header --decoration=always";
+      cats = "bat --style=header --decorations=always";
 
       # ghq
       cdghq = "cd $(ghq root); cd $(ghq list | fzf --reverse --height 40%)";
