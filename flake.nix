@@ -24,6 +24,7 @@
         git = ./modules/git;
         neovim = ./modules/neovim;
         tmux = ./modules/tmux;
+        vscode = ./modules/vscode;
         wezterm = ./modules/wezterm;
         zsh = ./modules/zsh;
       };
