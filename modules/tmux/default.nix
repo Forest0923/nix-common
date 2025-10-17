@@ -35,6 +35,7 @@
       # Configure plugins
       set -g @continuum-restore 'on'
       set -g @continuum-save-interval '15'
+      set -g @tokyo-night-tmux_window_id_style none
 
       set -g default-shell "$SHELL"
       set -g default-command "$SHELL"
