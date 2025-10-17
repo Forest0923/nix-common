@@ -13,7 +13,7 @@
     enableCompletion = false;
     profileExtra = ''
       # Homebrew
-      if test /opt/homebrew/bin/brew &> /dev/null; then
+      if command -v /opt/homebrew/bin/brew &> /dev/null; then
         eval "$(/opt/homebrew/bin/brew shellenv)"
         fpath=(/opt/homebrew/share/zsh/site-functions $fpath)
       fi

@@ -49,4 +49,8 @@ zstyle ':prompt:grml:*:items:host_full' pre '%F{cyan}'
 zstyle ':prompt:grml:*:items:path' pre '%F{yellow}'
 zstyle ':prompt:grml:*:items:percent' pre '%f'
 zstyle ':prompt:grml:left:setup' items user at host_full path virtual-env vcs padding time date newline rc percent
-zstyle ':prompt:grml:right:setup' items shell-level existing-jobs sad-smiley
+if [ isdarwin ]; then
+  zstyle ':prompt:grml:right:setup' items existing-jobs sad-smiley
+else
+  zstyle ':prompt:grml:right:setup' items shell-level existing-jobs sad-smiley
+fi
