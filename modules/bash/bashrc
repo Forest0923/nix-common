@@ -1,9 +1,9 @@
 # tmux
-if command -v tmux &> /dev/null && [ -z $TMUX ]; then
+if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
 	if [[ $TERM_PROGRAM == vscode ]]; then
 		tmux new 2> /dev/null
 	else
-		tmux attach 2> /dev/null || `cd ~; tmux new` 2> /dev/null
+		tmux attach 2> /dev/null || cd ~ || tmux new 2> /dev/null
 	fi
 fi
 
@@ -17,8 +17,8 @@ MAGENTA="\033[0;35m"
 WHITE="\033[0;37m"
 
 gen_git_prompt() {
-	branch=`git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
-	if [ -z $branch ]; then
+	branch=$(git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
+	if [ -z "$branch" ]; then
 		echo ""
 	else
 		echo "${MAGENTA}[${GREEN}$branch${MAGENTA}]"
@@ -27,7 +27,7 @@ gen_git_prompt() {
 
 gen_rc_prompt() {
 	rc=$1
-	if [ $rc -ne 0 ]; then
+	if [ "$rc" -ne 0 ]; then
 		echo "${RED}\[\e[1m\]${rc}\[\e[0m\] "
 	fi
 }
