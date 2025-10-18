@@ -1,5 +1,4 @@
 {
-  config,
   pkgs,
   lib,
   ...
@@ -13,7 +12,7 @@
     enableCompletion = false;
     profileExtra = ''
       # Homebrew
-      if test /opt/homebrew/bin/brew &> /dev/null; then
+      if command -v /opt/homebrew/bin/brew &> /dev/null; then
         eval "$(/opt/homebrew/bin/brew shellenv)"
         fpath=(/opt/homebrew/share/zsh/site-functions $fpath)
       fi
@@ -54,8 +53,8 @@
     shellAliases = {
       # ls
       ls = "command eza";
-      la = "command eza -la";
-      ll = "command eza -l";
+      la = "command eza -lah --git";
+      ll = "command eza -lh --git";
       lh = "command eza -hAl";
       l = "command eza -l";
       tree = "command eza -T";
@@ -63,33 +62,33 @@
       ## Execute \kbd{ls -lSrah}
       dir = "command eza -lSrah";
       ## Only show dot-directories
-      lad = "command eza -d .*(/)";
+      lad = "command eza -d -- .*(/N)";
       ## Only show dot-files
-      lsa = "command eza -a .*(.)";
+      lsa = "command eza -a -- .*(.N)";
       ## Only files with setgid/setuid/sticky flag
-      lss = "command eza -l *(s,S,t)";
+      lss = "command eza -l -- *(s,S,tN)";
       ## Only show symlinks
-      lsl = "command eza -l *(@)";
+      lsl = "command eza -l -- *(@N)";
       ## Display only executables
-      lsx = "command eza -l *(*)";
+      lsx = "command eza -l -- *(*N)";
       ## Display world-{readable,writable,executable} files
-      lsw = "command eza -ld *(R,W,X.^ND/)";
+      lsw = "command eza -ld -- *(R,W,X.^ND/)";
       ## Display the ten biggest files
-      lsbig = "command eza -flh *(.OL[1,10])";
+      lsbig = "command eza -flh -- *(.OL[1,10])";
       ## Only show directories
-      lsd = "command eza -d *(/)";
+      lsd = "command eza -d -- *(/N)";
       ## Only show empty directories
-      lse = "command eza -d *(/^F)";
+      lse = "command eza -d -- *(/^FN)";
       ## Display the ten newest files
-      lsnew = "command eza -rtlh *(D.om[1,10])";
+      lsnew = "command eza -lh -- *(D.om[1,10])";
       ## Display the ten oldest files
-      lsold = "command eza -rtlh *(D.Om[1,10])";
+      lsold = "command eza -lh -- *(D.Om[1,10])";
       ## Display the ten smallest files
-      lssmall = "command eza -Srl *(.oL[1,10])";
+      lssmall = "command eza -lh -- *(.oL[1,10])";
       ## Display the ten newest directories and ten newest .directories
-      lsnewdir = "command eza -rthdl *(/om[1,10]) .*(D/om[1,10])";
+      lsnewdir = "command eza -thdl -- *(/om[1,10]) .*(D/om[1,10])";
       ## Display the ten oldest directories and ten oldest .directories
-      lsolddir = "command eza -rthdl *(/Om[1,10]) .*(D/Om[1,10])";
+      lsolddir = "command eza -thdl -- *(/Om[1,10]) .*(D/Om[1,10])";
 
       # cat
       cat = "bat";
