@@ -1,8 +1,16 @@
-{ lib, pkgs, config, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 let
   ndev = pkgs.writeShellApplication {
     name = "ndev";
-    runtimeInputs = with pkgs; [fzf jq];
+    runtimeInputs = with pkgs; [
+      fzf
+      jq
+    ];
     text = builtins.readFile ./ndev.sh;
   };
 in
