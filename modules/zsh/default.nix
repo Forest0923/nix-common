@@ -103,5 +103,19 @@
       neofetch = "curl -s https://raw.githubusercontent.com/dylanaraps/neofetch/master/neofetch | bash";
       print256colours = "curl -s https://gist.githubusercontent.com/HaleTom/89ffe32783f89f403bba96bd7bcd1263/raw/e50a28ec54188d2413518788de6c6367ffcea4f7/print256colours.sh | bash";
     };
+    envExtra = ''
+      typeset -a path
+      path=(''${=PATH})
+
+      if [[ -r /etc/paths ]]; then
+        path+=("''${(@f)$(< /etc/paths)}")
+      fi
+
+      for f in /etc/paths.d/*(.N); do
+        path+=("''${(@f)$(< "$f")}")
+      done
+
+      export PATH="''${(j/:/)path}"
+    '';
   };
 }
