@@ -16,7 +16,7 @@
       ...
     }:
     let
-      hmModules = rec {
+      hmModules = {
         bash = ./modules/bash;
         bat = ./modules/bat;
         eza = ./modules/eza;
@@ -28,11 +28,15 @@
         wezterm = ./modules/wezterm;
         zsh = ./modules/zsh;
       };
+      appModules = {
+        ndev = ./modules/ndev;
+      };
       pick = names: map (name: hmModules.${name}) names;
     in
     {
       lib = {
         hmModules = hmModules;
+        appModules = appModules;
         pickHm = pick;
       };
     };
