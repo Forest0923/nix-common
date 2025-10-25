@@ -35,13 +35,15 @@
         # https://github.com/nix-community/home-manager/blob/d305eece827a3fe317a2d70138f53feccaf890a1/modules/programs/fzf.nix
         source ${pkgs.grml-zsh-config}/etc/zsh/zshrc
       '')
+      (lib.mkOrder 999 ''
+        prompt off
+        #''${builtins.readFile ./prompt.sh}
+      '')
       (lib.mkOrder 1000 ''
         ###################
         # --- Default --- #
         ###################
         ${builtins.readFile ./functions.sh}
-
-        ${builtins.readFile ./prompt.sh}
       '')
       (lib.mkOrder 1500 ''
         #######################
