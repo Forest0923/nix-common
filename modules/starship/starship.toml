@@ -1,0 +1,63 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+add_newline = false
+
+format = '''
+$status$username@$hostname$directory$python$git_branch
+$shell
+'''
+
+right_format = '$nix_shell$shlvl$jobs'
+
+[status]
+disabled = false
+format = '[$status]($style) '
+style = 'red bold'
+
+[username]
+format = '[$user]($style)'
+show_always = true
+style_root = 'red'
+style_user = 'red'
+
+[hostname]
+format = '[$hostname$ssh_symbol]($style) '
+ssh_only = false
+ssh_symbol = '\(SSH\)'
+style = 'cyan'
+
+[directory]
+format = '[$path]($style) '
+style = 'yellow'
+truncate_to_repo = false
+truncation_length = 5
+
+[python]
+format = '[${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
+
+[git_branch]
+format = '[\([git](white)\)-\[[$branch](green)\]]($style)'
+style = 'purple'
+
+[shell]
+disabled = false
+format = '[$indicator](white) '
+bash_indicator = '\$'
+zsh_indicator = '%'
+unknown_indicator = '>'
+
+[nix_shell]
+format = '$symbol'
+heuristic = true
+symbol = 'Nix'
+
+[shlvl]
+disabled = false
+format = '$symbol(red)'
+repeat = true
+repeat_offset = 2
+symbol = '+'
+threshold = 2
+
+[jobs]
+symbol = '#'

@@ -23,6 +23,7 @@
         fzf = ./modules/fzf;
         git = ./modules/git;
         neovim = ./modules/neovim;
+        starship = ./modules/starship;
         tmux = ./modules/tmux;
         vscode = ./modules/vscode;
         wezterm = ./modules/wezterm;
