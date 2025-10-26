@@ -3,11 +3,11 @@
 add_newline = false
 
 format = '''
-$status$username@$hostname$directory$python$git_branch
+$status$username@$hostname$directory$python$git_branch$fill$nix_shell$time$shlvl$jobs
 $shell
 '''
 
-right_format = '$nix_shell$shlvl$jobs'
+# right_format = '$nix_shell$shlvl$jobs'
 
 [status]
 disabled = false
@@ -27,17 +27,40 @@ ssh_symbol = '\(SSH\)'
 style = 'cyan'
 
 [directory]
-format = '[$path]($style) '
+format = '[$path]($style)'
 style = 'yellow'
 truncate_to_repo = false
 truncation_length = 5
 
 [python]
-format = '[${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
+format = ' [${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
+style = 'blue'
 
 [git_branch]
 format = '[\([git](white)\)-\[[$branch](green)\]]($style)'
 style = 'purple'
+
+[nix_shell]
+format = 'in [$symbol]($style) '
+heuristic = true
+symbol = 'NixShell'
+
+[time]
+disabled = false
+format = 'at [$time]($style)'
+style = 'yellow'
+
+[shlvl]
+disabled = false
+format = ' [$symbol](red)'
+repeat = true
+repeat_offset = 2
+symbol = '+'
+threshold = 2
+
+[jobs]
+format = ' [$symbol$number]($style)'
+symbol = '#'
 
 [shell]
 disabled = false
@@ -45,19 +68,3 @@ format = '[$indicator](white) '
 bash_indicator = '\$'
 zsh_indicator = '%'
 unknown_indicator = '>'
-
-[nix_shell]
-format = '$symbol'
-heuristic = true
-symbol = 'Nix'
-
-[shlvl]
-disabled = false
-format = '$symbol(red)'
-repeat = true
-repeat_offset = 2
-symbol = '+'
-threshold = 2
-
-[jobs]
-symbol = '#'
