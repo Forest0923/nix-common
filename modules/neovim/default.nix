@@ -106,6 +106,18 @@
       local caps_ok, cmp_caps = pcall(require, 'cmp_nvim_lsp')
       local caps = caps_ok and cmp_caps.default_capabilities() or nil
 
+      vim.lsp.config('nil_ls', {
+        settings = {
+          ['nil'] = {
+            nix = {
+              flake = {
+                autoArchive = true,
+              },
+            },
+          },
+        },
+      })
+
       vim.lsp.config('*', { capabilities = caps })
 
       for _, name in ipairs{
