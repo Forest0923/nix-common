@@ -16,7 +16,7 @@
       vimPlugins.cmp-nvim-lsp
     ];
 
-    extraLuaConfig = ''
+    initLua = ''
       -- basic settings
       local o = vim.opt
       o.fileencoding = 'utf-8'
