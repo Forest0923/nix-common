@@ -18,6 +18,7 @@
         fzf = ./modules/fzf;
         git = ./modules/git;
         neovim = ./modules/neovim;
+        opencode = ./modules/opencode;
         starship = ./modules/starship;
         tmux = ./modules/tmux;
         vscode = ./modules/vscode;
