@@ -103,6 +103,17 @@
       vim.cmd('language en_US.UTF-8')
 
       -- LSP
+      local function lsp_on_attach(buf)
+        local map = function(mode, lhs, rhs) vim.keymap.set(mode, lhs, rhs, {buffer=buf}) end
+        map('n','K', vim.lsp.buf.hover)
+        map('n','gd', vim.lsp.buf.definition)
+        map('n','gr', vim.lsp.buf.references)
+        map('n','gi', vim.lsp.buf.implementation)
+        map('n','<leader>rn', vim.lsp.buf.rename)
+        map('n','<leader>ca', vim.lsp.buf.code_action)
+        map('n','<leader>f', function() vim.lsp.buf.format({async=true}) end)
+      end
+
       local caps_ok, cmp_caps = pcall(require, 'cmp_nvim_lsp')
       local caps = caps_ok and cmp_caps.default_capabilities() or nil
 
@@ -118,7 +129,10 @@
         },
       })
 
-      vim.lsp.config('*', { capabilities = caps })
+      vim.lsp.config('*', {
+        capabilities = caps,
+        on_attach = function(client, buf) lsp_on_attach(buf) end,
+      })
 
       for _, name in ipairs{
         'bashls','gopls','jsonls','lua_ls','nil_ls','pyright','rust_analyzer','yamlls'
@@ -137,27 +151,12 @@
         })
       end
 
-      local function lsp_on_attach(buf)
-        local map = function(mode, lhs, rhs) vim.keymap.set(mode, lhs, rhs, {buffer=buf}) end
-        map('n','K', vim.lsp.buf.hover)
-        map('n','gd', vim.lsp.buf.definition)
-        map('n','gr', vim.lsp.buf.references)
-        map('n','gi', vim.lsp.buf.implementation)
-        map('n','<leader>rn', vim.lsp.buf.rename)
-        map('n','<leader>ca', vim.lsp.buf.code_action)
-        map('n','<leader>f', function() vim.lsp.buf.format({async=true}) end)
-      end
-
       vim.diagnostic.config({
         virtual_text = true,
         signs = true,
         underline = true,
         severity_sort = true,
       })
-
-      local caps_ok, cmp_caps = pcall(require, 'cmp_nvim_lsp')
-      local caps = caps_ok and cmp_caps.default_capabilities() or nil
-      vim.lsp.config('*', { capabilities = caps, on_attach = function(client, buf) lsp_on_attach(buf) end })
     '';
   };
   home.packages = with pkgs; [
