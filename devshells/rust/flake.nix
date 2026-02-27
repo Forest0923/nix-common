@@ -2,9 +2,9 @@
   description = "Rust development environment";
 
   inputs = {
-    nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1"; # unstable Nixpkgs
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     fenix = {
-      url = "https://flakehub.com/f/nix-community/fenix/0.1";
+      url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

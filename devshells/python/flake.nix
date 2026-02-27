@@ -10,14 +10,14 @@
     { self, ... }@inputs:
 
     let
-      systems = [
+      supportedSystems = [
         "x86_64-linux"
         "aarch64-linux"
         "aarch64-darwin"
       ];
-      forAllSystems =
+      forEachSupportedSystem =
         f:
-        inputs.nixpkgs.lib.genAttrs systems (
+        inputs.nixpkgs.lib.genAttrs supportedSystems (
           system:
           f {
             pkgs = import inputs.nixpkgs { inherit system; };
@@ -25,7 +25,7 @@
         );
     in
     {
-      devShells = forAllSystems (
+      devShells = forEachSupportedSystem (
         { pkgs }:
         let
           python = pkgs.python314;
