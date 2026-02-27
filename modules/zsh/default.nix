@@ -24,7 +24,6 @@
         # --- lib.mkBefore --- #
         ########################
         ${builtins.readFile ./pre.sh}
-        #zmodload zsh/zprof
       '')
       (lib.mkOrder 850 ''
         ###########################
@@ -37,7 +36,6 @@
       '')
       (lib.mkOrder 999 ''
         prompt off
-        #''${builtins.readFile ./prompt.sh}
       '')
       (lib.mkOrder 1000 ''
         ###################
@@ -49,7 +47,6 @@
         #######################
         # --- lib.mkAfter --- #
         #######################
-        #zprof
       '')
     ];
     shellAliases = {
