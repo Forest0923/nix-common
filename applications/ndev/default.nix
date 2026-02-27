@@ -1,7 +1,6 @@
 {
   lib,
   pkgs,
-  config,
   ...
 }:
 let
@@ -17,11 +16,6 @@ in
 {
   options.programs.ndev = {
     enable = lib.mkEnableOption "ndev wrapper to select flake/devShell via fzf";
-    configFile = lib.mkOption {
-      type = lib.types.str;
-      default = "${config.xdg.configHome}/nix/flake-repos";
-      description = "Path of repositories list used by ndev.";
-    };
   };
 
   config = {
