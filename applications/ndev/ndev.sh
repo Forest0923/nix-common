@@ -97,7 +97,14 @@ get_history() {
 }
 
 select_and_run() {
-	local cmd="${SHELL}"
+	if [[ -n "${IN_NIX_SHELL:-}" ]]; then
+		echo "warning: already inside a nix shell, nesting." >&2
+	fi
+
+	# Use login shell from passwd (nix develop overrides $SHELL to non-interactive bash)
+	local cmd
+	cmd="$(getent passwd "${USER}" | cut -d: -f7)"
+	cmd="${cmd:-${SHELL}}"
 
 	# Parse options
 	while [[ $# -gt 0 ]]; do
