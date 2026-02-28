@@ -33,6 +33,7 @@
           default = pkgs.mkShellNoCC {
             packages = with pkgs; [
               github-copilot-cli
+              bashInteractive
             ];
           };
         }
