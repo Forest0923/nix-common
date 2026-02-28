@@ -36,7 +36,7 @@ rm_repo() {
 		exit 1
 	fi
 	local repo
-	repo="$(fzf --prompt='remove> ' < "$CFG")"
+	repo="$(cat "$CFG" | fzf --prompt='remove> ')"
 	[[ -n "${repo:-}" ]] || exit 1
 	grep -vxF "$repo" "$CFG" > "${CFG}.tmp"
 	mv "${CFG}.tmp" "$CFG"
@@ -80,7 +80,7 @@ update_flakes() {
 		done < "$CFG"
 	else
 		local repo
-		repo="$(fzf --prompt='update> ' --preview='nix flake show {} 2>/dev/null | sed -n "1,80p"' < "$CFG")"
+		repo="$(cat "$CFG" | fzf --prompt='update> ' --preview='nix flake show {} 2>/dev/null | sed -n "1,80p"')"
 		[[ -n "${repo:-}" ]] || exit 1
 		echo "updating: $repo"
 		(cd "$repo" && nix flake update)
@@ -125,7 +125,7 @@ select_and_run() {
 	# Sort repos with last used first
 	local sorted_repos
 	if [[ -n "$last_repo" ]] && grep -qxF "$last_repo" "$CFG"; then
-		sorted_repos="$(echo "$last_repo"; grep -vxF "$last_repo" "$CFG")"
+		sorted_repos="$(echo "$last_repo"; { grep -vxF "$last_repo" "$CFG" || true; })"
 	else
 		sorted_repos="$(cat "$CFG")"
 	fi
@@ -139,7 +139,6 @@ select_and_run() {
 		'if builtins ? currentSystem
 then builtins.currentSystem
 else (import <nixpkgs> {}).stdenv.hostPlatform.system')"
-
 	local devs
 	devs="$(nix flake show --json "$repo" \
 		| jq -r --arg s "$sys" '.devShells[$s] | keys[]?' )"
@@ -150,18 +149,17 @@ else (import <nixpkgs> {}).stdenv.hostPlatform.system')"
 	local last_dev="${last_choice#*#}"
 	local sorted_devs
 	if [[ "$last_repo" == "$repo" ]] && echo "$devs" | grep -qxF "$last_dev"; then
-		sorted_devs="$(echo "$last_dev"; echo "$devs" | grep -vxF "$last_dev")"
+		sorted_devs="$(echo "$last_dev"; { echo "$devs" | grep -vxF "$last_dev" || true; })"
 	else
 		sorted_devs="$devs"
 	fi
 
 	local dev
-	dev="$(printf '%s\n' "$sorted_devs" | fzf --prompt='devShell> ')"
+	dev="$(printf '%s\n' "$sorted_devs" | fzf --prompt='devShell> ' --select-1)"
 	[[ -n "${dev:-}" ]] || exit 1
 
 	save_history "$repo" "$dev"
 
-	echo "running: nix develop '${repo}#${dev}' -c $cmd"
 	nix develop "${repo}#${dev}" -c "$cmd"
 }
 
