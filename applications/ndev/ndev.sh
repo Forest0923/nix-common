@@ -103,7 +103,13 @@ select_and_run() {
 
 	# Use login shell from passwd (nix develop overrides $SHELL to non-interactive bash)
 	local cmd
-	cmd="$(getent passwd "${USER}" | cut -d: -f7)"
+	if command -v getent >/dev/null 2>&1; then
+		cmd="$(getent passwd "${USER}" | cut -d: -f7)"
+	elif command -v dscl >/dev/null 2>&1; then
+		cmd="$(dscl . -read /Users/"$USER" UserShell | awk '{print $2}')"
+	else
+		cmd="${SHELL}"
+	fi
 	cmd="${cmd:-${SHELL}}"
 
 	# Parse options
