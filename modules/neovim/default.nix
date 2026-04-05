@@ -3,7 +3,6 @@
   programs.neovim = {
     enable = true;
     plugins = with pkgs; [
-      vimPlugins.copilot-vim
       vimPlugins.hlchunk-nvim
       vimPlugins.lexima-vim
       vimPlugins.mini-comment
