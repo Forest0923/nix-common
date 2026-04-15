@@ -3,7 +3,7 @@
 add_newline = false
 
 format = '''
-$status$username@$hostname$directory$python$git_branch$fill$nix_shell$time$shlvl$jobs
+$status$username@$hostname$directory$python$kubernetes$git_branch$fill$nix_shell$time$shlvl$jobs
 $shell
 '''
 
@@ -33,8 +33,11 @@ truncate_to_repo = false
 truncation_length = 5
 
 [python]
-format = ' [${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
+format = '[${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
 style = 'blue'
+
+[kubernetes]
+disabled = false
 
 [git_branch]
 format = '[\([git](white)\)-\[[$branch](green)\]]($style)'
