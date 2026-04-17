@@ -93,10 +93,6 @@
       cat = "bat";
       cats = "bat --style=header --decorations=always";
 
-      # ghq
-      cdghq = "cd $(ghq root); cd $(ghq list | fzf --reverse --height 40%)";
-      updghq = "cd $(ghq root); ghq get -u $(ghq list | fzf --reverse --height 40%)";
-
       up = "cd ..";
       refsh = "unset __HM_SESS_VARS_SOURCED; unset __HM_ZSH_SESS_VARS_SOURCED; exec zsh -l";
       neofetch = "curl -s https://raw.githubusercontent.com/dylanaraps/neofetch/master/neofetch | bash";

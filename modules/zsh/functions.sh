@@ -18,3 +18,15 @@ unflag() {
 	tmux set-environment -g -u __HM_SESS_VARS_SOURCED
 	tmux set-environment -g -u __HM_ZSH_SESS_VARS_SOURCED
 }
+
+cdghq() {
+	local repo
+	repo=$(ghq list | fzf --reverse --height 40%)
+	if [ -n "$repo" ]; then
+		cd "$(ghq root)/$repo" || exit
+	fi
+}
+
+fdbat () {
+	fd . "$1" -tf -X bat --style=header --decorations=always
+}
