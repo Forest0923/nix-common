@@ -17,6 +17,7 @@
         eza = ./modules/eza;
         fzf = ./modules/fzf;
         git = ./modules/git;
+        kubie = ./modules/kubie;
         neovim = ./modules/neovim;
         opencode = ./modules/opencode;
         starship = ./modules/starship;
