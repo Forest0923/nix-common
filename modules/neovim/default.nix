@@ -15,6 +15,9 @@
       vimPlugins.cmp-nvim-lsp
     ];
 
+    withRuby = false;
+    withPython3 = false;
+
     initLua = ''
       -- basic settings
       local o = vim.opt
