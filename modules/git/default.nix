@@ -26,18 +26,20 @@ let
 in
 {
   options.nixCommon.git.hostIdentities = mkOption {
-    type = types.attrsOf (types.submodule {
-      options = {
-        name = mkOption {
-          type = types.str;
-          description = "Git user.name for repositories under a specific host path.";
+    type = types.attrsOf (
+      types.submodule {
+        options = {
+          name = mkOption {
+            type = types.str;
+            description = "Git user.name for repositories under a specific host path.";
+          };
+          email = mkOption {
+            type = types.str;
+            description = "Git user.email for repositories under a specific host path.";
+          };
         };
-        email = mkOption {
-          type = types.str;
-          description = "Git user.email for repositories under a specific host path.";
-        };
-      };
-    });
+      }
+    );
     default = { };
     example = {
       "github.com" = {
