@@ -46,6 +46,17 @@ local config = {
 if wezterm.target_triple == "x86_64-unknown-linux-gnu" then
 	-- for Linux
 	config.window_decorations	= "NONE"
+	local ret = io.popen("systemd-detect-virt 2> /dev/null")
+	if ret then
+		local virt_type = ret:read("*a"):gsub("%s+", "")
+		ret:close()
+		if virt_type ~= "none" and virt_type ~= "" then
+			is_vm = true
+		end
+	end
+	if is_vm then
+		config.front_end	= "OpenGL"
+	end
 elseif wezterm.target_triple == "aarch64-apple-darwin" then
 	-- for macOS
 	config.window_decorations	= "TITLE | RESIZE"
