@@ -35,6 +35,12 @@ local config = {
 		"((?:[A-Za-z0-9]+[\\.\\-_/])+[A-Za-z0-9\\.]+)",
 	},
 	warn_about_missing_glyphs = false,
+	set_environment_variables = {
+		PATH = "/nix/var/nix/profiles/default/bin:"
+			.. os.getenv("HOME")
+			.. "/.nix-profile/bin:"
+			.. os.getenv("PATH")
+	}
 }
 
 if wezterm.target_triple == "x86_64-unknown-linux-gnu" then
