@@ -7,7 +7,7 @@
       "--height 40%"
       "--reverse"
     ];
-    historyWidgetOptions = [
+    historyWidget.options = [
       "--reverse"
     ];
   };
