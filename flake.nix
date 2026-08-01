@@ -6,10 +6,14 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    herdr = {
+      url = "git+ssh://git@github.com/herdrdev/herdr.git";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
-    { ... }:
+    { herdr, ... }:
     let
       hmModules = {
         bash = ./modules/bash;
@@ -17,9 +21,11 @@
         eza = ./modules/eza;
         fzf = ./modules/fzf;
         git = ./modules/git;
+        herdr = import ./modules/herdr { inherit herdr; };
         kubie = ./modules/kubie;
         neovim = ./modules/neovim;
         opencode = ./modules/opencode;
+        ripgrep = ./modules/ripgrep;
         starship = ./modules/starship;
         tmux = ./modules/tmux;
         vscode = ./modules/vscode;
