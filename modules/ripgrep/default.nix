@@ -1,5 +1,5 @@
 {
-  programs.opencode = {
+  programs.ripgrep = {
     enable = true;
   };
 }
