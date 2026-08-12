@@ -8,17 +8,18 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1785591657,
-        "narHash": "sha256-9gGVwPhPapnUGokk+xS8jRtc/iw2WsQ0YNZHoDOzVWA=",
-        "ref": "refs/heads/master",
-        "rev": "f459a0df315e0963aec5e4dcf2fc394a252ea320",
-        "revCount": 1281,
+        "lastModified": 1786446126,
+        "narHash": "sha256-4wtS2Tr87htnOonUyWP0k5cMuxGZeALi+6zaQPP1z8g=",
+        "ref": "master-forest0923",
+        "rev": "940f98e4b2b226e9c7b0c73abb7156176080b1f5",
+        "revCount": 1384,
         "type": "git",
-        "url": "ssh://git@github.com/herdrdev/herdr.git"
+        "url": "ssh://git@github.com/Forest0923/herdr.git"
       },
       "original": {
+        "ref": "master-forest0923",
         "type": "git",
-        "url": "ssh://git@github.com/herdrdev/herdr.git"
+        "url": "ssh://git@github.com/Forest0923/herdr.git"
       }
     },
     "home-manager": {
