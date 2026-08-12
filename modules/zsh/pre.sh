@@ -1,5 +1,5 @@
 # .zshrc.pre
-if [[ -z $TMUX ]] && [[ -z $ZELLIJ ]]; then
+if [[ -z $TMUX ]] && [[ -z $ZELLIJ ]] && [[ -z $HERDR_ENV ]]; then
 	if [[ $TERM_PROGRAM == vscode ]] || \
 	   [[ $TERM_PROGRAM == WarpTerminal ]] || \
 	   [[ $TERMINAL_EMULATOR == JetBrains-JediTerm ]] || \
