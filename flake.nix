@@ -7,7 +7,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     herdr = {
-      url = "git+ssh://git@github.com/herdrdev/herdr.git";
+      url = "git+ssh://git@github.com/Forest0923/herdr.git?ref=master-forest0923";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
