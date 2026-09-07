@@ -10,10 +10,14 @@
       url = "git+ssh://git@github.com/Forest0923/herdr.git?ref=master-forest0923";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    hermes-agent = {
+      url = "github:NousResearch/hermes-agent/main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
-    { herdr, ... }:
+    { herdr, hermes-agent, ... }:
     let
       hmModules = {
         bash = ./modules/bash;
@@ -22,6 +26,7 @@
         fzf = ./modules/fzf;
         git = ./modules/git;
         herdr = import ./modules/herdr { inherit herdr; };
+        hermes = import ./modules/hermes { inherit hermes-agent; };
         kubie = ./modules/kubie;
         neovim = ./modules/neovim;
         opencode = ./modules/opencode;

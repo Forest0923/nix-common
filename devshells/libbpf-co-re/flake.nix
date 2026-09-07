@@ -45,10 +45,9 @@
             ];
 
             env = {
-              ARCH = builtins.replaceStrings
-                [ "x86_64" "aarch64" ]
-                [ "x86" "arm64" ]
-                pkgs.stdenv.hostPlatform.linuxArch;
+              ARCH =
+                builtins.replaceStrings [ "x86_64" "aarch64" ] [ "x86" "arm64" ]
+                  pkgs.stdenv.hostPlatform.linuxArch;
             };
 
             shellHook = ''
