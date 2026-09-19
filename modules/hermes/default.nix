@@ -9,7 +9,10 @@
   services.hermes-agent = {
     enable = true;
     gateway.enable = true;
-    settings.model.default = "qwen/qwen3.8-27b";
+    settings.model = {
+      default = "qwen/qwen3.8-27b";
+      base_url = "https://lmstudio.evox2.home/v1";
+    };
     environmentFiles = [ config.sops.secrets."hermes/env".path ];
   };
   sops.secrets."hermes/env" = {
