@@ -24,13 +24,16 @@
       # Sort session list
       bind s choose-session -Z -O name
 
-      # Clear history
-      bind l clear-history \; display "Cleared"
-
       # Open panes and windows on current directory
       bind '"' split-window -c "#{pane_current_path}"
       bind % split-window -h -c "#{pane_current_path}"
       bind c new-window -c "#{pane_current_path}"
+
+      # Pane navigation
+      bind h select-pane -L
+      bind j select-pane -D
+      bind k select-pane -U
+      bind l select-pane -R
 
       # Configure plugins
       set -g @continuum-restore 'on'
@@ -41,6 +44,8 @@
       set -g default-command "$SHELL"
 
       set -g allow-passthrough on
+
+      set -g renumber-windows on
 
       # Restore sessions
       run-shell "${pkgs.tmuxPlugins.resurrect}/share/tmux-plugins/resurrect/scripts/restore.sh"
